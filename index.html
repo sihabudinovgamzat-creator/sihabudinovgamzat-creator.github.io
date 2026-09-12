@@ -1,0 +1,2275 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Необычный сайт</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #000;
+            color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+        /* =========================
+           ГЛАВНАЯ
+        ========================= */
+
+        .main {
+
+            width: 100vw;
+            height: 100vh;
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            padding: 20px;
+
+            background:
+                radial-gradient(
+                    circle,
+                    #252525 0%,
+                    #080808 70%
+                );
+        }
+
+
+        .main h1 {
+
+            margin: 0 0 15px;
+
+            font-size: 42px;
+        }
+
+
+        .main p {
+
+            margin: 0 0 25px;
+
+            color: #aaa;
+
+            font-size: 20px;
+        }
+
+
+        button {
+
+            padding: 14px 32px;
+
+            border: 1px solid #555;
+
+            border-radius: 8px;
+
+            background: #222;
+
+            color: #fff;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+
+        button:hover {
+
+            background: #444;
+
+            transform: scale(1.05);
+        }
+
+
+        /* =========================
+           ГРОМКОСТЬ
+        ========================= */
+
+        #volumeMessage {
+
+            position: fixed;
+
+            inset: 0;
+
+            display: none;
+
+            justify-content: center;
+            align-items: center;
+
+            flex-direction: column;
+
+            text-align: center;
+
+            background: #050505;
+
+            z-index: 50;
+
+            padding: 20px;
+        }
+
+
+        #volumeMessageContent {
+
+            font-size: 32px;
+
+            font-weight: bold;
+
+            animation: volumeAppear 1s ease;
+        }
+
+
+        #volumeSubtext {
+
+            margin-top: 15px;
+
+            color: #888;
+
+            font-size: 18px;
+        }
+
+
+        @keyframes volumeAppear {
+
+            from {
+
+                opacity: 0;
+
+                transform: scale(0.7);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform: scale(1);
+            }
+        }
+
+
+        /* =========================
+           СТРАШНАЯ СЦЕНА
+        ========================= */
+
+        #warningScene {
+
+            position: fixed;
+
+            inset: 0;
+
+            display: none;
+
+            justify-content: center;
+            align-items: center;
+
+            flex-direction: column;
+
+            background:
+                radial-gradient(
+                    circle,
+                    #181818 0%,
+                    #050505 75%
+                );
+
+            z-index: 60;
+        }
+
+
+        #warningText {
+
+            position: absolute;
+
+            top: 12%;
+
+            width: 90%;
+
+            text-align: center;
+
+            color: #777;
+
+            font-size: 18px;
+        }
+
+
+        #strangeObject {
+
+            width: 220px;
+            height: 220px;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            border: 2px solid #333;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    #333 0%,
+                    #111 60%,
+                    #000 100%
+                );
+
+            box-shadow:
+                0 0 30px rgba(255,255,255,0.05);
+
+            animation:
+                objectWarning 1.5s infinite;
+        }
+
+
+        @keyframes objectWarning {
+
+            0% {
+
+                transform: scale(1);
+            }
+
+            50% {
+
+                transform: scale(1.05);
+            }
+
+            100% {
+
+                transform: scale(1);
+            }
+        }
+
+
+        /* =========================
+           ГЛАЗ
+        ========================= */
+
+        .eye {
+
+            position: relative;
+
+            width: 110px;
+            height: 65px;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            overflow: visible;
+
+            border-radius:
+                70% 10%
+                70% 10%;
+
+            background: #ddd;
+
+            transform: rotate(45deg);
+
+            box-shadow:
+                0 0 20px
+                rgba(255,255,255,0.15);
+
+            transition:
+                background 4s ease,
+                box-shadow 4s ease;
+        }
+
+
+        .eye-red {
+
+            background: #a50000;
+
+            box-shadow:
+
+                0 0 25px
+                rgba(255,0,0,0.6),
+
+                0 0 50px
+                rgba(255,0,0,0.2);
+        }
+
+
+        /* =========================
+           ЗРАЧОК
+        ========================= */
+
+        .pupil {
+
+            position: absolute;
+
+            z-index: 30;
+
+            left: 50%;
+            top: 50%;
+
+            transform:
+                translate(-50%, -50%);
+
+            width: 38px;
+            height: 38px;
+
+            border-radius: 50%;
+
+            background: #050505;
+
+            box-shadow:
+                0 0 15px #000;
+        }
+
+
+        /* =====================================================
+           ВЕНЫ ГЛАЗА
+        ===================================================== */
+
+        .veins {
+
+            position: absolute;
+
+            inset: 0;
+
+            z-index: 15;
+
+            opacity: 0;
+
+            transition:
+                opacity 4s ease;
+
+            pointer-events: none;
+
+            overflow: hidden;
+
+            border-radius:
+                70% 10%
+                70% 10%;
+        }
+
+
+        .veins.active {
+
+            opacity: 1;
+        }
+
+
+        .veins svg {
+
+            position: absolute;
+
+            width: 100%;
+            height: 100%;
+
+            left: 0;
+            top: 0;
+
+            overflow: hidden;
+        }
+
+
+        .veins path {
+
+            fill: none;
+
+            stroke:
+                rgba(90, 0, 0, 1);
+
+            stroke-width: 1.8;
+
+            stroke-linecap: round;
+
+            stroke-linejoin: round;
+
+            filter:
+                drop-shadow(
+                    0 0 2px
+                    rgba(120,0,0,0.7)
+                );
+        }
+
+
+        .veins .thin {
+
+            stroke-width: 1.3;
+
+            opacity: 0.9;
+        }
+
+
+        .veins .very-thin {
+
+            stroke-width: 0.9;
+
+            opacity: 0.8;
+        }
+
+
+        /* =========================
+           МИГАНИЕ
+        ========================= */
+
+        .blink {
+
+            animation:
+                blinkEye 0.12s 4;
+        }
+
+
+        @keyframes blinkEye {
+
+            0% {
+
+                transform:
+                    rotate(45deg)
+                    scaleY(1);
+            }
+
+            50% {
+
+                transform:
+                    rotate(45deg)
+                    scaleY(0.05);
+            }
+
+            100% {
+
+                transform:
+                    rotate(45deg)
+                    scaleY(1);
+            }
+        }
+
+
+        /* =========================
+           СКРИМЕР
+        ========================= */
+
+        #screamer {
+
+            position: fixed;
+
+            inset: 0;
+
+            display: none;
+
+            justify-content: center;
+            align-items: center;
+
+            background: #000;
+
+            z-index: 100;
+
+            overflow: hidden;
+        }
+
+
+        #screamGif {
+
+            position: absolute;
+
+            top: 50%;
+            left: 50%;
+
+            width: 100vw;
+            height: 100vh;
+
+            object-fit: contain;
+
+            transform:
+                translate(-50%, -50%);
+        }
+
+
+        .glitch {
+
+            animation:
+                glitch 0.12s infinite;
+        }
+
+
+        @keyframes glitch {
+
+            0% {
+
+                transform:
+                    translate(-50%, -50%);
+
+                filter: none;
+            }
+
+            20% {
+
+                transform:
+                    translate(-52%, -48%);
+
+                filter:
+                    contrast(2)
+                    hue-rotate(20deg);
+            }
+
+            40% {
+
+                transform:
+                    translate(-48%, -52%);
+
+                filter:
+                    contrast(3)
+                    saturate(2);
+            }
+
+            60% {
+
+                transform:
+                    translate(-53%, -47%);
+
+                filter:
+                    hue-rotate(-30deg);
+            }
+
+            80% {
+
+                transform:
+                    translate(-47%, -53%);
+
+                filter:
+                    contrast(2);
+            }
+
+            100% {
+
+                transform:
+                    translate(-50%, -50%);
+
+                filter: none;
+            }
+        }
+
+
+        /* =========================
+           ГЛИТЧ-ПОЛОСЫ
+        ========================= */
+
+        #glitchOverlay {
+
+            position: fixed;
+
+            inset: 0;
+
+            display: none;
+
+            pointer-events: none;
+
+            z-index: 200;
+
+            background:
+
+                repeating-linear-gradient(
+                    0deg,
+
+                    transparent 0px,
+
+                    transparent 3px,
+
+                    rgba(255,0,0,0.12)
+                    4px,
+
+                    transparent 5px
+                );
+
+            animation:
+                noise 0.08s infinite;
+        }
+
+
+        @keyframes noise {
+
+            0% {
+
+                transform: translate(0);
+
+                opacity: 0.4;
+            }
+
+            25% {
+
+                transform:
+                    translate(-10px, 4px);
+
+                opacity: 0.8;
+            }
+
+            50% {
+
+                transform:
+                    translate(8px, -5px);
+
+                opacity: 0.5;
+            }
+
+            75% {
+
+                transform:
+                    translate(-4px, 8px);
+
+                opacity: 0.9;
+            }
+
+            100% {
+
+                transform: translate(0);
+
+                opacity: 0.4;
+            }
+        }
+
+
+        /* =====================================================
+           ТИТРЫ
+        ===================================================== */
+
+        #credits {
+
+            position: fixed;
+
+            inset: 0;
+
+            display: none;
+
+            overflow: hidden;
+
+            background:
+
+                radial-gradient(
+                    ellipse at center,
+                    #151515 0%,
+                    #080808 40%,
+                    #000 100%
+                );
+
+            text-align: center;
+
+            z-index: 300;
+        }
+
+
+        /* =========================
+           ТУМАН
+        ========================= */
+
+        #credits::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: -30%;
+
+            z-index: 2;
+
+            pointer-events: none;
+
+            background:
+
+                radial-gradient(
+                    ellipse at 20% 50%,
+                    rgba(255,255,255,0.06),
+                    transparent 45%
+                ),
+
+                radial-gradient(
+                    ellipse at 80% 40%,
+                    rgba(255,255,255,0.045),
+                    transparent 50%
+                ),
+
+                radial-gradient(
+                    ellipse at 50% 80%,
+                    rgba(255,255,255,0.035),
+                    transparent 45%
+                );
+
+            filter: blur(30px);
+
+            animation:
+                fogMove 18s ease-in-out infinite alternate;
+        }
+
+
+        @keyframes fogMove {
+
+            from {
+
+                transform:
+                    translateX(-6%)
+                    translateY(2%)
+                    scale(1);
+            }
+
+            to {
+
+                transform:
+                    translateX(6%)
+                    translateY(-2%)
+                    scale(1.1);
+            }
+        }
+
+
+        /* Затемнение сверху и снизу */
+
+        #credits::after {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            z-index: 20;
+
+            background:
+
+                linear-gradient(
+                    to bottom,
+
+                    #000 0%,
+
+                    transparent 16%,
+
+                    transparent 84%,
+
+                    #000 100%
+                );
+        }
+
+
+        /* =========================
+           ТЕКСТ
+        ========================= */
+
+        #creditsRoll {
+
+            position: absolute;
+
+            top: 100vh;
+
+            left: 0;
+
+            width: 100%;
+
+            padding:
+                0 20px
+                100px;
+
+            animation:
+                creditsRoll
+                45s
+                linear
+                forwards;
+
+            z-index: 5;
+        }
+
+
+        #creditsRoll h2 {
+
+            margin:
+                0 0 80px;
+
+            font-size: 60px;
+
+            letter-spacing: 14px;
+
+            color: #fff;
+
+            text-shadow:
+
+                0 0 5px #fff,
+
+                0 0 15px #fff,
+
+                0 0 30px
+                rgba(255,255,255,0.7),
+
+                0 0 60px
+                rgba(255,255,255,0.25);
+        }
+
+
+        #creditsRoll h3 {
+
+            margin:
+                75px 0 30px;
+
+            font-size: 30px;
+
+            letter-spacing: 6px;
+
+            color: #fff;
+
+            text-shadow:
+
+                0 0 5px #fff,
+
+                0 0 18px
+                rgba(255,255,255,0.7);
+        }
+
+
+        #creditsRoll p {
+
+            margin:
+                30px 0;
+
+            color: #eee;
+
+            font-size: 23px;
+
+            line-height: 1.5;
+
+            letter-spacing: 2px;
+
+            text-shadow:
+
+                0 0 5px
+                rgba(255,255,255,0.9),
+
+                0 0 14px
+                rgba(255,255,255,0.45),
+
+                0 0 30px
+                rgba(255,255,255,0.15);
+        }
+
+
+        .small-text {
+
+            font-size: 18px !important;
+
+            color: #aaa !important;
+
+            letter-spacing: 3px !important;
+        }
+
+
+        /* =========================
+           АВТОР
+        ========================= */
+
+        .author-title {
+
+            margin-top:
+                110px !important;
+
+            font-size:
+                36px !important;
+
+            letter-spacing:
+                9px !important;
+
+            color:
+                #fff !important;
+
+            text-shadow:
+
+                0 0 5px #fff,
+
+                0 0 20px #fff,
+
+                0 0 45px
+                rgba(255,255,255,0.5);
+        }
+
+
+        .author-name {
+
+            font-size:
+                43px !important;
+
+            font-weight:
+                bold;
+
+            letter-spacing:
+                8px !important;
+
+            color:
+                #fff !important;
+
+            text-shadow:
+
+                0 0 5px #fff,
+
+                0 0 15px #fff,
+
+                0 0 35px
+                rgba(255,255,255,0.8),
+
+                0 0 70px
+                rgba(255,255,255,0.3);
+        }
+
+
+        .end-text {
+
+            margin-top:
+                130px !important;
+
+            font-size:
+                50px !important;
+
+            letter-spacing:
+                12px !important;
+
+            color:
+                #fff !important;
+
+            text-shadow:
+
+                0 0 5px #fff,
+
+                0 0 20px #fff,
+
+                0 0 50px
+                rgba(255,255,255,0.8);
+        }
+
+
+        /* =====================================================
+           ВАЖНО:
+           ВЕСЬ БЛОК ТИТРОВ УХОДИТ ЗА ЭКРАН
+        ===================================================== */
+
+        @keyframes creditsRoll {
+
+            from {
+
+                top: 100vh;
+
+                transform:
+                    translateY(0);
+            }
+
+            to {
+
+                top: 100vh;
+
+                transform:
+                    translateY(-100%);
+            }
+        }
+
+
+        /* =====================================================
+           ГЛАЗА В ТИТРАХ
+        ===================================================== */
+
+        .credit-eye {
+
+            position: absolute;
+
+            width: 95px;
+            height: 48px;
+
+            border-radius:
+                70% 10%
+                70% 10%;
+
+            background: #aaa;
+
+            opacity: 0;
+
+            transform:
+                rotate(45deg)
+                scale(0.8);
+
+            z-index: 10;
+
+            pointer-events: none;
+
+            box-shadow:
+                0 0 15px
+                rgba(255,255,255,0.08);
+        }
+
+
+        .credit-eye::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 30px;
+            height: 30px;
+
+            left: 50%;
+            top: 50%;
+
+            transform:
+                translate(-50%, -50%);
+
+            border-radius: 50%;
+
+            background: #050505;
+
+            box-shadow:
+                0 0 12px #000;
+        }
+
+
+        .credit-eye.show {
+
+            animation:
+                creditEyeAppear
+                4s
+                ease
+                forwards;
+        }
+
+
+        @keyframes creditEyeAppear {
+
+            0% {
+
+                opacity: 0;
+
+                transform:
+                    rotate(45deg)
+                    scale(0.7);
+            }
+
+            15% {
+
+                opacity: 0.35;
+
+                transform:
+                    rotate(45deg)
+                    scale(1);
+            }
+
+            35% {
+
+                opacity: 0.45;
+            }
+
+            45% {
+
+                transform:
+                    rotate(45deg)
+                    scaleY(0.05);
+
+                opacity: 0.5;
+            }
+
+            50% {
+
+                transform:
+                    rotate(45deg)
+                    scaleY(1);
+
+                opacity: 0.5;
+            }
+
+            55% {
+
+                transform:
+                    rotate(45deg)
+                    scaleY(0.05);
+
+                opacity: 0.5;
+            }
+
+            60% {
+
+                transform:
+                    rotate(45deg)
+                    scaleY(1);
+
+                opacity: 0.45;
+            }
+
+            100% {
+
+                opacity: 0;
+
+                transform:
+                    rotate(45deg)
+                    scale(0.7);
+            }
+        }
+
+
+        .credit-eye.red {
+
+            background:
+                #650000;
+
+            box-shadow:
+
+                0 0 20px
+                rgba(255,0,0,0.2);
+        }
+
+
+        .eye-left-top {
+
+            top: 15%;
+            left: 5%;
+        }
+
+
+        .eye-right-top {
+
+            top: 25%;
+            right: 5%;
+        }
+
+
+        .eye-left-bottom {
+
+            bottom: 20%;
+            left: 8%;
+        }
+
+
+        .eye-right-bottom {
+
+            bottom: 12%;
+            right: 8%;
+        }
+
+
+        /* =========================
+           МОБИЛЬНАЯ ВЕРСИЯ
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            .main h1 {
+
+                font-size: 32px;
+            }
+
+
+            .main p {
+
+                font-size: 17px;
+            }
+
+
+            button {
+
+                padding:
+                    12px 28px;
+
+                font-size: 17px;
+            }
+
+
+            #volumeMessageContent {
+
+                font-size: 27px;
+            }
+
+
+            #volumeSubtext {
+
+                font-size: 15px;
+            }
+
+
+            #strangeObject {
+
+                width: 180px;
+                height: 180px;
+            }
+
+
+            .eye {
+
+                width: 90px;
+                height: 55px;
+            }
+
+
+            .pupil {
+
+                width: 32px;
+                height: 32px;
+            }
+
+
+            #warningText {
+
+                font-size: 15px;
+            }
+
+
+            #creditsRoll h2 {
+
+                font-size: 40px;
+
+                letter-spacing: 7px;
+            }
+
+
+            #creditsRoll h3 {
+
+                font-size: 23px;
+
+                letter-spacing: 3px;
+            }
+
+
+            #creditsRoll p {
+
+                font-size: 17px;
+
+                margin: 22px 0;
+            }
+
+
+            .author-title {
+
+                font-size: 25px !important;
+
+                letter-spacing: 4px !important;
+            }
+
+
+            .author-name {
+
+                font-size: 28px !important;
+
+                letter-spacing: 4px !important;
+            }
+
+
+            .end-text {
+
+                font-size: 32px !important;
+
+                letter-spacing: 6px !important;
+            }
+
+
+            .credit-eye {
+
+                width: 70px;
+                height: 38px;
+            }
+
+
+            .credit-eye::before {
+
+                width: 23px;
+                height: 23px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         ГЛАВНАЯ
+    ========================= -->
+
+    <div class="main" id="main">
+
+        <h1>
+            Добро пожаловать
+        </h1>
+
+        <p>
+            Нажмите кнопку, чтобы продолжить
+        </p>
+
+        <button id="startButton">
+            Продолжить
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         ГРОМКОСТЬ
+    ========================= -->
+
+    <div id="volumeMessage">
+
+        <div id="volumeMessageContent">
+
+            🔊 Увеличьте громкость
+
+            <div id="volumeSubtext">
+
+                Для лучшего эффекта
+                установите комфортную громкость
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         СТРАШНАЯ СЦЕНА
+    ========================= -->
+
+    <div id="warningScene">
+
+        <div id="warningText">
+
+            Посмотрите внимательно...
+
+        </div>
+
+
+        <div id="strangeObject">
+
+
+            <div class="eye" id="eye">
+
+
+                <!-- =================================================
+                     ДЕТАЛИЗИРОВАННЫЕ ВЕНЫ
+                ================================================= -->
+
+                <div class="veins" id="veins">
+
+                    <svg
+                        viewBox="0 0 110 65"
+                        preserveAspectRatio="none"
+                    >
+
+                        <!-- Левая главная ветка -->
+
+                        <path d="
+                            M 50 32
+                            C 43 31, 36 29, 29 25
+                            C 22 21, 16 19, 9 20
+                        "/>
+
+
+                        <!-- Левая верхняя ветка -->
+
+                        <path class="thin" d="
+                            M 34 29
+                            C 31 24, 29 19, 28 13
+                            C 27 9, 24 6, 20 4
+                        "/>
+
+
+                        <!-- Левая верхняя ответвление -->
+
+                        <path class="very-thin" d="
+                            M 29 20
+                            C 24 18, 20 15, 17 11
+                            C 15 9, 12 8, 9 8
+                        "/>
+
+
+                        <!-- Левая нижняя ветка -->
+
+                        <path class="thin" d="
+                            M 37 30
+                            C 32 34, 29 39, 28 45
+                            C 27 49, 24 53, 20 56
+                        "/>
+
+
+                        <!-- Левая нижняя ответвление -->
+
+                        <path class="very-thin" d="
+                            M 29 43
+                            C 24 41, 20 41, 16 43
+                            C 13 44, 11 46, 8 47
+                        "/>
+
+
+                        <!-- Ещё левая ветка -->
+
+                        <path class="very-thin" d="
+                            M 22 24
+                            C 18 24, 15 26, 12 29
+                            C 10 31, 8 32, 5 32
+                        "/>
+
+
+                        <!-- Правая главная ветка -->
+
+                        <path d="
+                            M 60 32
+                            C 67 31, 74 29, 81 25
+                            C 88 21, 94 19, 101 20
+                        "/>
+
+
+                        <!-- Правая верхняя ветка -->
+
+                        <path class="thin" d="
+                            M 76 29
+                            C 79 24, 81 19, 82 13
+                            C 83 9, 86 6, 90 4
+                        "/>
+
+
+                        <!-- Правая верхняя ответвление -->
+
+                        <path class="very-thin" d="
+                            M 81 20
+                            C 86 18, 90 15, 93 11
+                            C 95 9, 98 8, 101 8
+                        "/>
+
+
+                        <!-- Правая нижняя ветка -->
+
+                        <path class="thin" d="
+                            M 73 30
+                            C 78 34, 81 39, 82 45
+                            C 83 49, 86 53, 90 56
+                        "/>
+
+
+                        <!-- Правая нижняя ответвление -->
+
+                        <path class="very-thin" d="
+                            M 81 43
+                            C 86 41, 90 41, 94 43
+                            C 97 44, 99 46, 102 47
+                        "/>
+
+
+                        <!-- Ещё правая ветка -->
+
+                        <path class="very-thin" d="
+                            M 88 24
+                            C 92 24, 95 26, 98 29
+                            C 100 31, 102 32, 105 32
+                        "/>
+
+
+                        <!-- Тонкая внутренняя ветвь -->
+
+                        <path class="very-thin" d="
+                            M 42 29
+                            C 39 25, 38 21, 38 17
+                            C 38 14, 37 12, 35 10
+                        "/>
+
+
+                        <path class="very-thin" d="
+                            M 68 29
+                            C 71 25, 72 21, 72 17
+                            C 72 14, 73 12, 75 10
+                        "/>
+
+                    </svg>
+
+                </div>
+
+
+                <!-- ЗРАЧОК -->
+
+                <div class="pupil"></div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         СКРИМЕР
+    ========================= -->
+
+    <div id="screamer">
+
+        <img
+            id="screamGif"
+            src="scream.gif"
+            alt="Скример"
+        >
+
+    </div>
+
+
+    <!-- ГЛИТЧ -->
+
+    <div id="glitchOverlay"></div>
+
+
+    <!-- =========================
+         ТИТРЫ
+    ========================= -->
+
+    <div id="credits">
+
+
+        <!-- МОРГАЮЩИЕ ГЛАЗА -->
+
+        <div
+            class="credit-eye eye-left-top">
+        </div>
+
+
+        <div
+            class="credit-eye eye-right-top red">
+        </div>
+
+
+        <div
+            class="credit-eye eye-left-bottom red">
+        </div>
+
+
+        <div
+            class="credit-eye eye-right-bottom">
+        </div>
+
+
+        <!-- ТЕКСТ -->
+
+        <div id="creditsRoll">
+
+
+            <h2>
+                КОНЕЦ
+            </h2>
+
+
+            <p>
+                Спасибо за просмотр.
+            </p>
+
+
+            <p>
+                Вы дошли до конца этого проекта.
+            </p>
+
+
+            <p>
+                Но история ещё не закончилась...
+            </p>
+
+
+            <h3>
+                ОБ ЭТОМ ПРОЕКТЕ
+            </h3>
+
+
+            <p>
+                Этот проект создавался
+                с нуля.
+            </p>
+
+
+            <p>
+                Дизайн, страницы и
+                визуальные эффекты
+                были разработаны
+                для этого сайта.
+            </p>
+
+
+            <p>
+                HTML отвечает за
+                структуру проекта.
+            </p>
+
+
+            <p>
+                CSS отвечает за
+                оформление и анимации.
+            </p>
+
+
+            <p>
+                JavaScript отвечает
+                за логику и
+                последовательность сцен.
+            </p>
+
+
+            <p>
+                Все сцены работают
+                последовательно,
+                создавая единое
+                впечатление.
+            </p>
+
+
+            <p>
+                Звуковое оформление
+                является частью
+                атмосферы проекта.
+            </p>
+
+
+            <p>
+                Скример, эффекты,
+                анимации и титры
+                объединены в одну
+                последовательность.
+            </p>
+
+
+            <h3>
+                ЧТО ЕСТЬ В ПРОЕКТЕ
+            </h3>
+
+
+            <p>
+                Дизайн
+            </p>
+
+
+            <p>
+                Анимации
+            </p>
+
+
+            <p>
+                HTML
+            </p>
+
+
+            <p>
+                CSS
+            </p>
+
+
+            <p>
+                JavaScript
+            </p>
+
+
+            <p>
+                Звуковые эффекты
+            </p>
+
+
+            <p>
+                Скример
+            </p>
+
+
+            <p>
+                Титры
+            </p>
+
+
+            <p>
+                Идея и реализация
+            </p>
+
+
+            <h3>
+                И НАКОНЕЦ...
+            </h3>
+
+
+            <p>
+                Спасибо, что посмотрели
+                этот небольшой проект.
+            </p>
+
+
+            <p>
+                Возможно, это просто сайт.
+            </p>
+
+
+            <p>
+                Возможно...
+            </p>
+
+
+            <p>
+                за вами кто-то наблюдает.
+            </p>
+
+
+            <p>
+                ...
+            </p>
+
+
+            <p>
+                ...
+            </p>
+
+
+            <p>
+                ...
+            </p>
+
+
+            <!-- АВТОР -->
+
+            <h3 class="author-title">
+                АВТОР ПРОЕКТА
+            </h3>
+
+
+            <p class="author-name">
+                ШИХАБУДИНОВ ГАМЗАТ
+            </p>
+
+
+            <p class="small-text">
+                СОЗДАТЕЛЬ И РАЗРАБОТЧИК
+            </p>
+
+
+            <p class="small-text">
+                ИДЕЯ • ДИЗАЙН • КОД • АНИМАЦИИ
+            </p>
+
+
+            <p class="small-text">
+                ЗВУК • ЭФФЕКТЫ • РЕАЛИЗАЦИЯ
+            </p>
+
+
+            <p>
+                12.09.2026
+            </p>
+
+
+            <p class="end-text">
+                КОНЕЦ.
+            </p>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         ЗВУКИ
+    ========================= -->
+
+    <audio
+        id="quietSound"
+        src="quiet.mp3"
+        preload="auto">
+    </audio>
+
+
+    <audio
+        id="screamSound"
+        src="scream.mp3"
+        preload="auto">
+    </audio>
+
+
+    <audio
+        id="calmSound"
+        src="calm.mp3"
+        preload="auto">
+    </audio>
+
+
+    <script>
+
+
+        const main =
+            document.getElementById("main");
+
+
+        const startButton =
+            document.getElementById("startButton");
+
+
+        const volumeMessage =
+            document.getElementById("volumeMessage");
+
+
+        const warningScene =
+            document.getElementById("warningScene");
+
+
+        const strangeObject =
+            document.getElementById("strangeObject");
+
+
+        const eye =
+            document.getElementById("eye");
+
+
+        const veins =
+            document.getElementById("veins");
+
+
+        const screamer =
+            document.getElementById("screamer");
+
+
+        const screamGif =
+            document.getElementById("screamGif");
+
+
+        const glitchOverlay =
+            document.getElementById("glitchOverlay");
+
+
+        const credits =
+            document.getElementById("credits");
+
+
+        const creditsRoll =
+            document.getElementById("creditsRoll");
+
+
+        const quietSound =
+            document.getElementById("quietSound");
+
+
+        const screamSound =
+            document.getElementById("screamSound");
+
+
+        const calmSound =
+            document.getElementById("calmSound");
+
+
+        /* Глаза титров */
+
+        const creditEyes =
+            document.querySelectorAll(
+                ".credit-eye"
+            );
+
+
+        let started = false;
+
+
+        /* Таймер глаз */
+
+        let creditEyeTimer = null;
+
+
+        /* =========================
+           ГЛАЗА В ТИТРАХ
+        ========================= */
+
+        function startCreditEyes() {
+
+
+            let index = 0;
+
+
+            function showNextEye() {
+
+
+                if (
+                    credits.style.display === "none" ||
+                    credits.style.display === ""
+                ) {
+
+                    return;
+                }
+
+
+                const currentEye =
+                    creditEyes[index];
+
+
+                currentEye.classList.remove(
+                    "show"
+                );
+
+
+                void currentEye.offsetWidth;
+
+
+                currentEye.classList.add(
+                    "show"
+                );
+
+
+                index++;
+
+
+                if (
+                    index >=
+                    creditEyes.length
+                ) {
+
+                    index = 0;
+                }
+
+
+                creditEyeTimer =
+                    setTimeout(
+                        showNextEye,
+                        5000
+                    );
+            }
+
+
+            showNextEye();
+        }
+
+
+        /* =========================
+           ОСТАНОВКА ГЛАЗ
+        ========================= */
+
+        function stopCreditEyes() {
+
+
+            if (
+                creditEyeTimer !== null
+            ) {
+
+                clearTimeout(
+                    creditEyeTimer
+                );
+
+                creditEyeTimer = null;
+            }
+
+
+            creditEyes.forEach(
+                function(currentEye) {
+
+                    currentEye.classList.remove(
+                        "show"
+                    );
+
+                    currentEye.style.opacity =
+                        "0";
+                }
+            );
+        }
+
+
+        /* =========================
+           КНОПКА
+        ========================= */
+
+        startButton.addEventListener(
+            "click",
+            start
+        );
+
+
+        /* =========================
+           ЗАПУСК
+        ========================= */
+
+        function start() {
+
+
+            if (started) {
+
+                return;
+            }
+
+
+            started = true;
+
+
+            /* Главная */
+
+            main.style.display =
+                "none";
+
+
+            /* Громкость */
+
+            volumeMessage.style.display =
+                "flex";
+
+
+            setTimeout(
+                function() {
+
+
+                    volumeMessage.style.display =
+                        "none";
+
+
+                    /* Страшная сцена */
+
+                    warningScene.style.display =
+                        "flex";
+
+
+                    /* Тихий звук */
+
+                    quietSound.volume =
+                        0.08;
+
+
+                    quietSound.currentTime =
+                        0;
+
+
+                    quietSound.play()
+                        .catch(
+                            function(error) {
+
+                                console.log(
+                                    "quiet.mp3 не запустился:",
+                                    error
+                                );
+
+                            }
+                        );
+
+
+                    strangeObject.style.animation =
+                        "objectWarning 1.5s infinite";
+
+
+                    /* =========================
+                       3 СЕКУНДЫ
+                    ========================= */
+
+                    setTimeout(
+                        function() {
+
+
+                            eye.classList.add(
+                                "eye-red"
+                            );
+
+
+                            veins.classList.add(
+                                "active"
+                            );
+
+
+                        },
+                        3000
+                    );
+
+
+                    /* =========================
+                       7 СЕКУНД
+                    ========================= */
+
+                    setTimeout(
+                        function() {
+
+
+                            eye.classList.add(
+                                "blink"
+                            );
+
+
+                            setTimeout(
+                                function() {
+
+                                    eye.classList.remove(
+                                        "blink"
+                                    );
+
+                                },
+                                600
+                            );
+
+
+                        },
+                        7000
+                    );
+
+
+                    /* =========================
+                       10 СЕКУНД
+                    ========================= */
+
+                    setTimeout(
+                        function() {
+
+
+                            quietSound.pause();
+
+                            quietSound.currentTime =
+                                0;
+
+
+                            warningScene.style.display =
+                                "none";
+
+
+                            /* Скример */
+
+                            screamer.style.display =
+                                "flex";
+
+
+                            screamGif.classList.add(
+                                "glitch"
+                            );
+
+
+                            glitchOverlay.style.display =
+                                "block";
+
+
+                            screamSound.volume =
+                                1;
+
+
+                            screamSound.currentTime =
+                                0;
+
+
+                            screamSound.play()
+                                .catch(
+                                    function(error) {
+
+                                        console.log(
+                                            "scream.mp3 не запустился:",
+                                            error
+                                        );
+
+                                    }
+                                );
+
+
+                            /* =========================
+                               СКРИМЕР 4 СЕКУНДЫ
+                            ========================= */
+
+                            setTimeout(
+                                function() {
+
+
+                                    screamSound.pause();
+
+                                    screamSound.currentTime =
+                                        0;
+
+
+                                    screamer.style.display =
+                                        "none";
+
+
+                                    screamGif.classList.remove(
+                                        "glitch"
+                                    );
+
+
+                                    glitchOverlay.style.display =
+                                        "none";
+
+
+                                    /* =========================
+                                       ТИТРЫ
+                                    ========================= */
+
+                                    credits.style.display =
+                                        "block";
+
+
+                                    /* Перезапуск титров */
+
+                                    creditsRoll.style.animation =
+                                        "none";
+
+
+                                    creditsRoll.offsetHeight;
+
+
+                                    creditsRoll.style.animation =
+                                        "creditsRoll 45s linear forwards";
+
+
+                                    /* Спокойная музыка */
+
+                                    calmSound.volume =
+                                        0.5;
+
+
+                                    calmSound.currentTime =
+                                        0;
+
+
+                                    calmSound.muted =
+                                        false;
+
+
+                                    calmSound.play()
+                                        .catch(
+                                            function(error) {
+
+                                                console.log(
+                                                    "calm.mp3 не запустился:",
+                                                    error
+                                                );
+
+                                            }
+                                        );
+
+
+                                    /* Запускаем глаза */
+
+                                    startCreditEyes();
+
+
+                                    /* =================================================
+                                       ОСТАНОВКА ГЛАЗ ПОСЛЕ ТИТРОВ
+                                    ================================================= */
+
+                                    setTimeout(
+                                        function() {
+
+                                            stopCreditEyes();
+
+                                        },
+                                        45000
+                                    );
+
+
+                                },
+                                4000
+                            );
+
+
+                        },
+                        10000
+                    );
+
+
+                },
+                4000
+            );
+
+        }
+
+    </script>
+
+</body>
+</html>
